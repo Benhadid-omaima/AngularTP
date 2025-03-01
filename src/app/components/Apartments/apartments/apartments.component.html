@@ -1,1 +1,46 @@
-<p>apartments works!</p>
+<form [formGroup]="apartForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="apartmentNumber">Apartment Number</label>
+      <input id="apartmentNumber" formControlName="apartmentNumber" />
+      <div *ngIf="apartForm.get('apartmentNumber')?.invalid && apartForm.get('apartmentNumber')?.touched">
+        <small *ngIf="apartForm.get('apartmentNumber')?.hasError('required')">Apartment Number is required.</small>
+        <small *ngIf="apartForm.get('apartmentNumber')?.hasError('pattern')">Only numbers are allowed.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="floorNumber">Floor Number</label>
+      <input id="floorNumber" formControlName="floorNumber" />
+      <div *ngIf="apartForm.get('floorNumber')?.invalid && apartForm.get('floorNumber')?.touched">
+        <small *ngIf="apartForm.get('floorNumber')?.hasError('required')">Floor Number is required.</small>
+        <small *ngIf="apartForm.get('floorNumber')?.hasError('pattern')">Only numbers are allowed.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="terrace">Terrace</label>
+      <input id="terrace" type="checkbox" formControlName="terrace" />
+    </div>
+  
+    <div>
+      <label for="surfaceTerrace">Surface Terrace</label>
+      <input id="surfaceTerrace" formControlName="surfaceTerrace" />
+      <div *ngIf="apartForm.get('surfaceTerrace')?.invalid && apartForm.get('surfaceTerrace')?.touched">
+        <small *ngIf="apartForm.get('surfaceTerrace')?.hasError('pattern')">Only numbers are allowed.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="residence">Residence</label>
+      <select id="residence" formControlName="residence">
+        <option value="">Select Residence</option>
+        <option *ngFor="let residence of listResidences" [value]="residence.id">{{ residence.name }}</option>
+      </select>
+      <div *ngIf="apartForm.get('residence')?.invalid && apartForm.get('residence')?.touched">
+        <small *ngIf="apartForm.get('residence')?.hasError('required')">Residence is required.</small>
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="apartForm.invalid">Add</button>
+  </form>
+  
