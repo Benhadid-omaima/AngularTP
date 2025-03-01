@@ -1,24 +1,34 @@
-import { Component } from '@angular/core';
-import { Residence } from "core/models/residence.model";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-residences',
   templateUrl: './residences.component.html',
   styleUrls: ['./residences.component.css']
 })
-export class ResidencesComponent {
-  listResidences: Residence[] = [
-    { id: 1, name: "El fel", address: "Borj ", image: "../../assets/images/R1.jpeg", status: "Disponible" },
-    { id: 2, name: "El yasmine", address: "Ezzahra", image: "../../assets/images/R2.jpg", status: "Disponible" },
-    { id: 3, name: "El Arij", address: "Rades", image: "../../assets/images/R3.jpg", status: "Vendu" },
-    { id: 4, name: "El Anber", address: "inconnu", image: "../../assets/images/R4.jpg", status: "En Construction" }
+export class ResidencesComponent implements OnInit {
+
+  listResidences = [
+    { 
+      id: 1, 
+      name: 'Résidence A', 
+      image: 'https://via.placeholder.com/200', 
+      status: 'Disponible', 
+      location: 'Paris' 
+    },
+    { 
+      id: 2, 
+      name: 'Résidence B', 
+      image: 'https://via.placeholder.com/200', 
+      status: 'Vendu', 
+      location: 'Lyon' 
+    }
   ];
 
-  showLocation(residence: Residence) {
-    if (residence.address === "inconnu") {
-      alert("L'adresse de cette résidence est inconnue.");
-    } else {
-      alert(`Adresse: ${residence.address}`);
-    }
+  constructor() { }
+
+  ngOnInit(): void { }
+
+  showLocation(residence: any): void {
+    alert('La localisation de la résidence ' + residence.name + ' est : ' + residence.location);
   }
 }

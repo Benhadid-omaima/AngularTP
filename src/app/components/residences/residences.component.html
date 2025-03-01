@@ -1,17 +1,16 @@
 <div class="container">
-    <h2>Liste des résidences</h2>
-  
-    <div class="residence-card" *ngFor="let residence of listResidences">
-      <img [src]="residence.image" alt="{{ residence.name }}" width="200" />
-      <h3>{{ residence.name }}</h3>
-  
-      <!-- Bouton Show Location -->
-      <button (click)="showLocation(residence)">Show Locatio</button>
-  
-      <!-- Affichage du statut avec icônes -->
-      <p *ngIf="residence.status === 'Disponible'">✅ Disponible</p>
-      <p *ngIf="residence.status === 'Vendu'">❌ Vendu</p>
-      <p *ngIf="residence.status === 'En Construction'">🚧 En Construction</p>
-    </div>
+  <h2>Liste des résidences</h2>
+
+  <div class="residence-card" *ngFor="let residence of listResidences">
+    <img [src]="residence.image" alt="{{ residence.name }}" width="200" />
+    <h3>{{ residence.name }}</h3>
+
+    <!-- Bouton pour afficher les détails de la résidence -->
+    <button [routerLink]="['/residence-details', residence.id]">Détails</button>
+
+    <!-- Affichage du statut avec icônes -->
+    <p *ngIf="residence.status === 'Disponible'">✅ Disponible</p>
+    <p *ngIf="residence.status === 'Vendu'">❌ Vendu</p>
+    <p *ngIf="residence.status === 'En Construction'">🚧 En Construction</p>
   </div>
-  
+</div>
