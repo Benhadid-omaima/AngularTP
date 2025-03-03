@@ -1,45 +1,45 @@
-<form [formGroup]="residenceForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="name">Residence Name:</label>
-      <input id="name" formControlName="name" />
-      <div *ngIf="residenceForm.get('name')?.invalid && residenceForm.get('name')?.touched">
-        <small *ngIf="residenceForm.get('name')?.hasError('required')">Name is required.</small>
-        <small *ngIf="residenceForm.get('name')?.hasError('minlength')">Minimum 3 characters.</small>
-      </div>
+<form [formGroup]="residenceForm" (ngSubmit)="saveResidence()">
+  <div>
+    <label for="name">Residence Name:</label>
+    <input id="name" formControlName="name" />
+    <div *ngIf="f['name'].invalid && f['name'].touched">
+      <small *ngIf="f['name'].errors?.['required']">Name is required.</small>
+      <small *ngIf="f['name'].errors?.['minlength']">Minimum 3 characters.</small>
     </div>
-  
-    <div>
-      <label for="address">Address:</label>
-      <input id="address" formControlName="address" />
+  </div>
+
+  <div>
+    <label for="address">Address:</label>
+    <input id="address" formControlName="address" />
+    <div *ngIf="f['address'].invalid && f['address'].touched">
+      <small *ngIf="f['address'].errors?.['required']">Address is required.</small>
     </div>
-  
-    <div>
-      <label for="image">Image URL:</label>
-      <input id="image" formControlName="image" />
+  </div>
+
+  <div>
+    <label for="image">Image URL:</label>
+    <input id="image" formControlName="image" />
+    <div *ngIf="f['image'].invalid && f['image'].touched">
+      <small *ngIf="f['image'].errors?.['required']">Image is required.</small>
+      <small *ngIf="f['image'].errors?.['pattern']">Must be a valid URL.</small>
     </div>
-  
-    <div>
-      <label for="status">Status:</label>
-      <select id="status" formControlName="status">
-        <option value="Disponible">Disponible</option>
-        <option value="En Construction">En Construction</option>
-        <option value="Vendu">Vendu</option>
-      </select>
-    </div>
-  
-    <div formArrayName="apartments">
-      <div *ngFor="let apartment of apartments.controls; let i = index">
-        <div [formGroupName]="i">
-          <!-- Formulaire pour chaque appartement -->
-          <input formControlName="apartmentNumber" placeholder="Apartment Number" />
-          <input formControlName="floorNumber" placeholder="Floor Number" />
-          <input formControlName="terrace" type="checkbox" />
-          <input formControlName="surfaceTerrace" placeholder="Surface Terrace" />
-        </div>
-      </div>
-    </div>
-  
-    <button (click)="addApartment()">Add Apartment</button>
-    <button type="submit" [disabled]="residenceForm.invalid">Submit</button>
-  </form>
-  
+  </div>
+
+  <div>
+    <label for="status">Status:</label>
+    <select id="status" formControlName="status">
+      <option value="Disponible">Disponible</option>
+      <option value="En Construction">En Construction</option>
+      <option value="Vendu">Vendu</option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="residenceForm.invalid">Submit</button>
+  <h2>Ajout de résidence</h2>
+<form [formGroup]="residenceForm">
+  <label for="name">Nom de la résidence :</label>
+  <input id="name" formControlName="name" />
+  <button type="submit">Valider</button>
+</form>
+
+</form>

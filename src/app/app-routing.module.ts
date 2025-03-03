@@ -16,6 +16,8 @@ const routes: Routes = [
   { path: 'apartments', component: ApartmentsComponent },  // Ajouter la route pour la page des appartements
   { path: '**', component: NotFoundComponent },
   { path: 'add-apartment', component: AddApartmentComponent },
+  { path: 'residences/edit/:id', component: AddResidenceComponent }, // Pour la modification
+
 ];
 
 @NgModule({

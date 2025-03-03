@@ -1,0 +1,11 @@
+{
+    "residences": [
+      { "id": 1, "name": "Residence A", "address": "Paris", "status": "Disponible" },
+      { "id": 2, "name": "Residence B", "address": "Lyon", "status": "Vendu" }
+    ],
+    "apartments": [
+      { "id": 1, "apartNum": 101, "floorNum": 2, "surface": 50, "residenceId": 1 },
+      { "id": 2, "apartNum": 102, "floorNum": 3, "surface": 60, "residenceId": 2 }
+    ]
+  }
+  

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../../../app/Core/Services/common.service';
+import { ResidenceService } from '../../../app/Core/Services/residence.service';
 
 @Component({
   selector: 'app-residences',
@@ -6,29 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./residences.component.css']
 })
 export class ResidencesComponent implements OnInit {
+  listResidences: any[] = [];
 
-  listResidences = [
-    { 
-      id: 1, 
-      name: 'Résidence A', 
-      image: 'https://via.placeholder.com/200', 
-      status: 'Disponible', 
-      location: 'Paris' 
-    },
-    { 
-      id: 2, 
-      name: 'Résidence B', 
-      image: 'https://via.placeholder.com/200', 
-      status: 'Vendu', 
-      location: 'Lyon' 
-    }
-  ];
+  constructor(private residenceService: ResidenceService) {}
 
-  constructor() { }
+  ngOnInit(): void {
+    this.residenceService.getResidences().subscribe(data => {
+      this.listResidences = data;
+    });
+  }
 
-  ngOnInit(): void { }
-
-  showLocation(residence: any): void {
-    alert('La localisation de la résidence ' + residence.name + ' est : ' + residence.location);
+  deleteResidence(id: number): void {
+    this.residenceService.deleteResidence(id).subscribe(() => {
+      this.listResidences = this.listResidences.filter(res => res.id !== id);
+    });
   }
 }
